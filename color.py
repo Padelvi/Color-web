@@ -2,6 +2,10 @@ from flask import Blueprint, request, render_template
 
 bp = Blueprint('color', __name__, url_prefix='/color')
 
+@bp.route('/')
+def color_index():
+    return 'Color'
+
 @bp.route('/rgb')
 def rgb_color():
     return render_template('color/rgb.html')

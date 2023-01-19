@@ -8,9 +8,13 @@ app.register_blueprint(convert.bp)
 
 @app.route('/')
 def index():
-    return 'Hello'
+    return render_template('index.html')
 
 @app.route('/<word>')
 def redefine(word):
-    if word not in ['convert', 'color']:
-        return render_template('notfound.html')
+    if word == 'color':
+        return redirect(url_for('color.color_index'))
+    elif word == 'convert':
+        return redirect(url_for('convert.convert_index'))
+    else:
+        abort(404)
