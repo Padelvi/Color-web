@@ -12,9 +12,12 @@ def index():
 
 @app.route('/<word>')
 def redefine(word):
-    if word == 'color':
-        return redirect(url_for('color.color_index'))
-    elif word == 'convert':
+    if word == 'convert':
         return redirect(url_for('convert.convert_index'))
+    elif word in ['rgb', 'rgba', 'hex', 'index']:
+        return redirect(url_for('color.color_' + word))
     else:
         abort(404)
+
+if __name__=='__main__':
+    app.run(debug=True, host='0.0.0.0')
