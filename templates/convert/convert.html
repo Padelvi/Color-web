@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Convert{% endblock %}
+
+{% block header %}Convert{% endblock %}
+
+{% block content %}
+<p>{{ source }}</p>
+<p>{{ target }}</p>
+<form method='post'>
+	{% if source=='rgb' %}{% include 'convert/inputs/rgb.html' %}{% endif %}
+	{% if source=='hex' %}{% include 'convert/inputs/hex.html' %}{% endif %}
+	<input type='submit' value='Submit'/>
+</form>
+{% endblock %}

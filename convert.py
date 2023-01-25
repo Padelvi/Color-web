@@ -5,7 +5,7 @@ bp = Blueprint('convert', __name__, url_prefix='/convert')
 
 @bp.route('/')
 def convert_index():
-    return render_template('convert/index.html')
+    return redirect(url_for('index.index'))
 
 @bp.route('/<word>')
 def not_enough_args(word):
@@ -14,17 +14,16 @@ def not_enough_args(word):
             return redirect(url_for('color.color_' + word))
     return render_template('convert/not_enough_args.html', word="'"+word+"'")
 
-@bp.route('/<source>/<target>')
-def confirm_input(source, target):
+@bp.route('/<source>/<target>', methods=['GET', 'POST'])
+def convert(source, target):
     valid_args = ['rgb', 'rgba', 'hex']
     if source in valid_args:
         valid_args.remove(source)
         if target in valid_args:
-            return source + ' to ' + target
+            pass
         else:
-            abort(404, "Target color format invalid. Try 'rgb', 'rgba', or 'hex'.")
+            abort(404, "Source and/or target color formats invalid. Try 'rgb', 'rgba', or 'hex'.")
     else:
-        if target in valid_args:
-            abort(404, "Source color format invalid. Try 'rgb', 'rgba', or 'hex'.")
-        else:
-            abort(404, "Both color formats invalid. Try 'rgb', 'rgba', or 'hex'.")
+        abort(404, "Source and/or target color formats invalid. Try 'rgb', 'rgba', or 'hex'.")
+    return render_template('convert/convert.html', source=source, target=target)
+

@@ -5,7 +5,7 @@ bp = Blueprint('color', __name__, url_prefix='/color')
 
 @bp.route('/')
 def color_index():
-    return render_template('color/index.html')
+    return redirect(url_for('index.index'))
 
 @bp.route('/<word>')
 def color_redefine(word):

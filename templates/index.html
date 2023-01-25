@@ -7,15 +7,13 @@
 {% block content %}
 <p>This is a webpage dedicated to convert easily between color formats: rgb, hex, and rgba.</p>
 <div>
-	<nav>
-		<h4>Colors</h4>
-		<a href='{{ url_for('color.color_index') }}'>Color page index</a>
+		<b>Colors</b>
+		<br/>
 		<ul>
 			<li><a href='{{ url_for('color.color_rgb') }}'>Color formats: rgb</a></li>
 			<li><a href='{{ url_for('color.color_rgba') }}'>Color formats: rgba</a></li>
 			<li><a href='{{ url_for('color.color_hex') }}'>Color formats: hex</a>
 		</ul>
-	</nav>
-	<nav><a href='{{ url_for('convert.convert_index') }}'>Convert index page</a></nav>
+	<a href='{{ url_for('convert.convert_index') }}'>Convert index page</a>
 </div>
 {% endblock %}
