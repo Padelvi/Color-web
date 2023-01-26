@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Convert index{% endblock %}
+
+{% block header %}Convert page index{% endblock %}
+
+{% block content %}
+{% for el in result %}<p>{{ el }}</p>{% endfor %}
+{% endblock %}

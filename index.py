@@ -14,4 +14,4 @@ def redefine(word):
     elif word in ['rgb', 'rgba', 'hex', 'index']:
         return redirect(url_for('color.color_' + word))
     else:
-        abort(404)
+        abort(404, 'Word incorrect, try another one.')

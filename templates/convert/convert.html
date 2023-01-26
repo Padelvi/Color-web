@@ -5,11 +5,20 @@
 {% block header %}Convert{% endblock %}
 
 {% block content %}
-<p>{{ source }}</p>
-<p>{{ target }}</p>
 <form method='post'>
-	{% if source=='rgb' %}{% include 'convert/inputs/rgb.html' %}{% endif %}
-	{% if source=='hex' %}{% include 'convert/inputs/hex.html' %}{% endif %}
+	<b>Source values ({{ source }}):</b>
+	<br/>
+	{% if source == 'rgb' %}{% include 'convert/inputs/rgb.html' %}{% endif %}
+	{% if source == 'rgba' %}{% include 'convert/inputs/rgba.html' %}{% endif %}
+	{% if source == 'hex' %}{% include 'convert/inputs/hex.html' %}{% endif %}
+	<br/>
+	<br/>
+	<b>Target values ({{ target }}):</b>
+	<br/>
+	{% if target == 'rgb' %}{% include 'convert/inputs/rgb.html' %}<br/>{% endif %}
+	{% if target == 'rgba' %}{% include 'convert/inputs/rgba.html' %}<br/>{% endif %}
+	{% if target == 'hex' %}{% include 'convert/inputs/hex.html' %}<br/>{% endif %}
+	<br/>
 	<input type='submit' value='Submit'/>
 </form>
 {% endblock %}
