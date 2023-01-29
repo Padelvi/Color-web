@@ -10,7 +10,7 @@
 <b>Convert to</b>
 <br/>
 <ul>
-	<li><a href='#'>Rgba</a></li>
-	<li><a href='#'>Hex</a></li>
+	<li><a href='{{ url_for('convert.convert', source='rgb', target='rgba') }}'>Rgba</a></li>
+	<li><a href='{{ url_for('convert.convert', source='rgb', target='hex') }}'>Hex</a></li>
 </ul>
 {% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<style type='text/css'>
+.color_box {
+	background-color: {% block color %}{% endblock %};
+	width: 25px;
+	height: 25px;
+}
+		</style>
+	</head>
+	<body>
+		<div class='color_box'></div>
+		{% block content %}{% endblock %}
+	</body>
+</html>

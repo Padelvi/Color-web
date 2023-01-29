@@ -5,5 +5,7 @@
 {% block header %}Convert page index{% endblock %}
 
 {% block content %}
-{% for el in result %}<p>{{ el }}</p>{% endfor %}
+{% if source == 'rgb' %}{% for el in rgb %}<p>{{ el }}</p>{% endfor %}{% endif %}
+{% if source == 'rgba' %}{% for el in rgba %}<p>{{ el }}</p>{% endfor %}{% endif %}
+{% if source == 'hex' %}<p>{{ hexv }}</p>{% endif %}
 {% endblock %}
