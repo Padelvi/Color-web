@@ -1,6 +1,5 @@
 from flask import render_template, Blueprint, redirect, url_for, request, abort
 from click import echo
-import formatter
 
 bp = Blueprint('convert', __name__, url_prefix='/convert')
 
@@ -10,8 +9,8 @@ def convert_index():
     target = request.args.get('target')
     echo(source)
     echo(target)
-    if source == target:
-        abort(404, 'Source and target color formats equal')
+    if target not in ['rgb', 'rgba', 'hex']:
+        abort(404, 'Target color incorrect')
     if source == 'rgb':
         rgb_r = request.args.get('rgb_r')
         rgb_g = request.args.get('rgb_g')
@@ -25,13 +24,20 @@ def convert_index():
             if num > 255 or num < 0:
                 abort(404, 'Invalid values. All numbers should be integers between 0 and 255.')
         echo(rgb)
-        return render_template('convert/index.html', source=source, rgb=rgb)
+        from formatter import Rgb
+        converter = Rgb(rgb, target)
+        result = converter.convert()
+        return render_template('convert/index.html', source=source, rgb=rgb, result=result)
     if source =='rgba':
         rgba_ra = request.args.get('rgba_ra')
         rgba_ga = request.args.get('rgba_ga')
         rgba_ba = request.args.get('rgba_ba')
         rgba_a = request.args.get('rgba_a')
         rgba = [rgba_ra, rgba_ga, rgba_ba]
+        bck_r = request.args.get('bck_r')
+        bck_g = request.args.get('bck_g')
+        bck_b = request.args.get('bck_b')
+        bck = [bck_r, bck_g, bck_b]
         for num in rgba:
             try:
                 num = int(num)
@@ -39,7 +45,6 @@ def convert_index():
                 abort(404, 'Invalid values. All numbers should be integers between 0 and 255.')
             if num > 255 or num < 0:
                 abort(404, 'Invalid values. All numbers should be integers between 0 and 255.')
-        echo(rgba)
         try:
             rgba_a = int(rgba_a)
         except ValueError:
@@ -48,7 +53,10 @@ def convert_index():
             abort(404, 'Invalid value. a value should be an integer between 0 and 100')
         rgba.append(rgba_a)
         echo(rgba)
-        return render_template('convert/index.html', source=source, rgba=rgba)
+        from formatter import Rgba
+        converter = Rgba(rgba, target)
+        result = converter.convert()
+        return render_template('convert/index.html', source=source, rgba=rgba, bck=bck, result=result)
     if source == 'hex':
         hexv = request.args.get('hexv')
         list_hexv = []
@@ -67,7 +75,12 @@ def convert_index():
                 abort(404, 'Length incorrect')
         hexv = ''.join(list_hexv)
         echo(hexv)
-        return render_template('convert/index.html', source=source, hexv=hexv)
+        from formatter import Hex
+        converter = Hex(hexv, target)
+        result = converter.convert()
+        return render_template('convert/index.html', source=source, hexv=hexv, result=result)
+    else:
+        abort(404, 'Source format invalid')
 
 @bp.route('/<word>')
 def not_enough_args(word):
@@ -100,8 +113,13 @@ def convert(source, target):
             rgba_ga = request.form.get('rgba_ga')
             rgba_ba = request.form.get('rgba_ba')
             rgba_a = request.form.get('rgba_a')
-            return redirect(url_for('convert.convert_index', source=source, rgba_ra=rgba_ra, rgba_ga=rgba_ga, rgba_ba=rgba_ba, rgba_a=rgba_a, target=target))
+            bck_r = request.form.get('bck_r')
+            bck_g = request.form.get('bck_g')
+            bck_b = request.form.get('bck_b')
+            return redirect(url_for('convert.convert_index', source=source, rgba_ra=rgba_ra, rgba_ga=rgba_ga, rgba_ba=rgba_ba, rgba_a=rgba_a, bck_r=bck_r, bck_g=bck_g, bck_b=bck_b, target=target))
         if source == 'hex':
             hexv = request.form.get('hexv')
             return redirect(url_for('convert.convert_index', source=source, hexv=hexv, target=target))
+        else:
+            abort(404, 'Target color incorrect')
     return render_template('convert/convert.html', source=source, target=target)

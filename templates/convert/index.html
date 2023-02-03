@@ -6,6 +6,7 @@
 
 {% block content %}
 {% if source == 'rgb' %}{% for el in rgb %}<p>{{ el }}</p>{% endfor %}{% endif %}
-{% if source == 'rgba' %}{% for el in rgba %}<p>{{ el }}</p>{% endfor %}{% endif %}
+{% if source == 'rgba' %}{% for el in rgba %}<p>{{ el }}</p>{% endfor %}{% for el in bck %}<p>{{ el }}</p>{% endfor %}{% endif %}
 {% if source == 'hex' %}<p>{{ hexv }}</p>{% endif %}
+<p>{{ result }}</p>
 {% endblock %}
