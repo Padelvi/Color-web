@@ -5,12 +5,11 @@
 {% block header %}Colors - rgb{% endblock %}
 
 {% block content %}
-<p>Lorem ipsum</p>
-<br/>
 <b>Convert to</b>
 <br/>
 <ul>
 	<li><a href='{{ url_for('convert.convert', source='rgb', target='rgba') }}'>Rgba</a></li>
 	<li><a href='{{ url_for('convert.convert', source='rgb', target='hex') }}'>Hex</a></li>
 </ul>
+
 {% endblock %}

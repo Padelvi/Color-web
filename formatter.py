@@ -1,3 +1,10 @@
+def rgba2rgb(rgba, bck):
+    return (
+        ((1 - rgba[3]) * background[0]) + (rgba[3] * rgba[0]),
+        ((1 - rgba[3]) * background[1]) + (rgba[3] * rgba[1]),
+        ((1 - rgba[3]) * background[2]) + (rgba[3] * rgba[2]),
+    )
+
 def dectohex(dec):
     value = f'{int(dec):X}'
     if len(value) == 1:
@@ -5,8 +12,8 @@ def dectohex(dec):
     else:
         return value
 
-def hextodec(hexa):
-    return int(hexa, 16)
+def hextodec(hexv):
+    return int(hexv, 16)
 
 class Rgb:
     def __init__(self, rgb, target):

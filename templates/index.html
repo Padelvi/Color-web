@@ -5,14 +5,12 @@
 {% block header %}The colorweb{% endblock %}
 
 {% block content %}
-<p>This is a webpage dedicated to convert easily between color formats: rgb, hex, and rgba.</p>
 <div>
-		<b>Colors</b>
-		<br/>
-		<ul>
+		<p>Colors</p>
+		<ul class='w3-ul'>
 			<li><a href='{{ url_for('color.color_rgb') }}'>Color format: rgb</a></li>
 			<li><a href='{{ url_for('color.color_rgba') }}'>Color format: rgba</a></li>
-			<li><a href='{{ url_for('color.color_hex') }}'>Color format: hex</a>
+			<li><a href='{{ url_for('color.color_hex') }}'>Color format: hex</a></li>
 		</ul>
 </div>
 {% endblock %}
