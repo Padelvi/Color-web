@@ -6,26 +6,12 @@ It is a simple app built in flask.
 
 ### Installation
 
-First, download this repository and create a python venv.
+I reccomend you to use docker for the installation.
+
+Copy this repo and use this command:
 
 `
-python3 -m venv venv
+docker compose up -d
 `
 
-Install the requirements with pip.
-
-`
-pip install -r requirements.txt
-`
-
-This project does not need any environment variables. Just in case you were going to modify this project, i reccomend you to use this one:
-
-`
-FLASK_DEBUG=True
-`
-
-Finally, to run the app, run:
-
-`
-flask run
-`
+It will do all the installation process.

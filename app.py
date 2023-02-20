@@ -1,6 +1,5 @@
-import os
 from flask import Flask
-import color, convert, index
+import os, color, convert, index
 
 app = Flask(__name__)
 
@@ -12,5 +11,5 @@ app.register_blueprint(index.bp)
 app.register_blueprint(color.bp)
 app.register_blueprint(convert.bp)
 
-if __name__=='__main__':
-    app.run(host='0.0.0.0')
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)

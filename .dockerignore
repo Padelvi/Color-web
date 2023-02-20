@@ -1,0 +1,19 @@
+# Git files
+.git
+.gitignore
+
+# Env files
+.env
+venv
+
+# Python cache files
+__pycache__
+*.pyc
+
+# Requirements for ap outside of docker
+requirements.txt
+
+# Other files
+LICENSE
+README.md
+*1
