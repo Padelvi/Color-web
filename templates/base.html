@@ -4,17 +4,11 @@
 		<title>The colorweb - {% block title %}{% endblock %}</title>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width,initial-scale=1"/>
-		<link rel='stylesheet' href='{{ url_for('static', filename='w3.css') }}'/>
-		<link rel='stylesheet' href='{{ url_for('static', filename='style.css') }}'/>
-		<link rel='icon' href='{{ url_for('static', filename='icon.png') }}'/>
 	</head>
 	<body>
-		<header class='w3-container w3-black'>
-			<nav class='w3-bar w3-row'>
-				<h1 class='w3-twothird'>{% block header %}{% endblock %}</h1>
-				<h4 class='home w3-third'><a href='{{ url_for('index.index') }}'>Home</a></h4>
-			</nav>
+		<header>
+			<h1>{% block header %}{% endblock %}</h1>
 		</header>
-		<div class='w3-container w3-blue'>{% block content %}{% endblock %}</div>
+		<div>{% block content %}{% endblock %}</div>
 	</body>
 </html>
